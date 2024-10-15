@@ -1,0 +1,132 @@
+/* General page styles */
+
+
+h2, h3, h4 {
+    color: #333;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h3, h4 {
+    margin-bottom: 15px;
+}
+
+/* Property Info Section */
+.property-info {
+    padding: 15px;
+   
+    border-radius: 8px;
+    margin-bottom: 20px;
+   
+}
+
+.rooms-info {
+    margin-bottom: 20px;
+}
+
+.room-shares {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap; /* Wrap if needed */
+}
+
+.room-shares label {
+    display: flex;
+    flex-direction: column;
+    width: 22%; /* Adjust width as needed */
+}
+
+button {
+    margin-top: 10px;
+}
+
+.property-info input {
+    display: block;
+    width: 50%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+.addFloors{
+    z-index: 1000px;
+}
+.property-info button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.property-info button:hover {
+    background-color: #218838;
+}
+
+/* Floor and Room Sections */
+.floor-section, .room-section {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.floor-section input, .room-section input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.floor-section button, .room-section button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.floor-section button:hover, .room-section button:hover {
+    background-color: #0056b3;
+}
+
+/* Room Share Labels */
+.room-section label {
+    display: block;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* Update Buttons */
+button {
+    margin-top: 15px;
+}
+
+/* Layout for Add Floors and Rooms Buttons */
+button {
+    padding: 10px 20px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #138496;
+}

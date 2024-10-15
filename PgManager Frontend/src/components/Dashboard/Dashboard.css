@@ -1,0 +1,50 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh; 
+    width: 100vw; 
+}
+
+.main-content{
+    display: flex;
+}
+.content {
+    flex: 1; 
+    padding: 20px; 
+    background-color: #f4f4f4; 
+    overflow-y: auto; 
+}
+
+.profile-icon-container {
+    position: relative; /* Ensure the dropdown is positioned relative to the icon */
+}
+
+.dropdown-menu {
+    position: absolute; /* Make sure it is positioned relative to the profile-icon-container */
+    top: 100%; /* Pushes the dropdown below the profile icon */
+    right: 0; /* Aligns the dropdown to the right edge of the icon */
+    background-color: white; /* Add background for visibility */
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000; /* Ensure it appears above other content */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for better visibility */
+}
+
+.dropdown-menu div {
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.dropdown-menu div:hover {
+    background-color: #f0f0f0; /* Optional: Highlight dropdown items on hover */
+}
+
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column; 
+    }
+
+    .content {
+        padding: 10px; 
+    }
+}

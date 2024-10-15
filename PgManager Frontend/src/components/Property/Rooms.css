@@ -1,0 +1,52 @@
+.rooms-container {
+  padding: 16px;
+}
+
+.floor-select {
+  margin: 16px 0;
+}
+
+.rooms-grid {
+  margin-top: 10%;
+
+}
+
+.room-card {
+  margin-bottom: 16px;
+  margin-top: 10%;
+  background-color: rgb(47 167 161) !important;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.beds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+ 
+  justify-content: center;
+  
+}
+.bed-summary {
+  display: flex;
+  justify-content: center; /* This will space the elements evenly */
+  align-items: center; /* Aligns items vertically centered */
+  padding: 10px; /* Optional: Adds some space around the content */
+  gap: 25px;
+}
+
+
+.bed-icon {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.available {
+  color: green;
+}
+
+.unavailable {
+  color: red;
+}

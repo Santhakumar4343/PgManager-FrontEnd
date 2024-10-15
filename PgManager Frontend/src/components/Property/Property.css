@@ -1,0 +1,241 @@
+.property-container {
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+}
+
+.search{
+    display: flex;
+    justify-content: space-between;  
+    position: sticky;
+ 
+    top: 0;
+    z-index: 100;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc
+    
+ }
+.open-modal-button{
+    border-radius: 10px;
+    color: white;
+    background-color: #4f0e83;
+}
+.search-Property{
+    width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+
+
+
+/* Container for the cards to apply flexbox */
+.property-cards {
+    display: flex;
+    flex-wrap: wrap; /* Ensures wrapping to the next row after 3 cards */
+    gap:    20px; /* Adjust spacing between cards */
+    justify-content: flex-start; /* Ensures even spacing between cards */
+    
+}
+
+/* Card Styles */
+.property-card {
+    flex: 1 1 calc(33.333% - 20px); /* Three cards per row, accounting for the gap */
+    max-width: calc(31.333% - 20px); /* Set max-width to maintain proper layout */
+    margin-bottom: 10px; /* Add margin at the bottom to create spacing between rows */
+    position: relative;
+    margin-top:20px;
+    width: 100%; /* Full width within its container */
+    height: 300px; /* Fixed height */
+    background-color:rgb(47 167 161);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px;
+    gap: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.property-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -5px;
+    margin: auto;
+    width: 200px;
+    height: 264px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #4f0e83 0%, #6bfffa 100%);
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.property-card::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #4f0e83 0%, #6bfffa 100%);
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+
+.property-card .heading {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.property-card p:not(.heading) {
+    font-size: 14px;
+}
+
+.property-card:hover::after {
+    filter: blur(30px);
+}
+
+.property-card:hover::before {
+    transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Optional: Add a hover effect for the card */
+.property-card:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1024px) {
+    .property-card {
+        flex: 1 1 calc(50% - 20px); /* Two cards per row for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .property-card {
+        flex: 1 1 calc(100% - 20px); /* One card per row for very small screens */
+    }
+}
+
+/* Modal overlay styles */
+.property-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay with transparency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease-in-out; /* Smooth fade-in effect */
+}
+
+.property-modal-rooms{
+    max-width: 100%;
+}
+/* Modal container styles */
+.property-modal {
+    background: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 400px;
+    max-width: 100%;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    position: relative;
+    animation: slideIn 0.3s ease-in-out; /* Slide-in effect */
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    z-index: 10000;
+}
+
+
+/* Smooth animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Heading inside modal */
+.property-modal h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Form styling */
+.property-form input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Slight inner shadow */
+    transition: border-color 0.2s ease;
+}
+
+.property-form input:focus {
+    border-color: #007bff; /* Change color when focused */
+}
+
+/* Button styling */
+.submit-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 123, 255, 0.2); /* Button shadow */
+}
+
+.submit-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Optional: Close button inside the modal */
+.property-modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Optional: Floor/Room form-specific styling */
+.property-modal h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
