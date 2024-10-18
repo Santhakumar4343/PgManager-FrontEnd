@@ -22,7 +22,8 @@ function Properties() {
     pincode: "",
     ownerName: "",
     ownerPhoneNumber: "",
-    propertyType:""
+    propertyType:"",
+    address:""
   });
   const [floors, setFloors] = useState([]);
   const [newlyAddedFloors, setNewlyAddedFloors] = useState([]);
@@ -152,11 +153,12 @@ function Properties() {
             className="property-card"
             onClick={() => handlePropertyClick(property)}
           >
-            <h3>{property.name}</h3>
+            <h2>{property.name}</h2>
             <p>Owner: {property.ownerName}</p>
+            <p>PG Type: {property.propertyType}</p>
             <p>Pincode: {property.pincode}</p>
-            <p>Email: {property.owneremail}</p>
-            <p>Phone: {property.ownerPhoneNumber}</p>
+            <p>Address: {property.address}</p>
+           
           </div>
         ))}
       </div>
@@ -210,6 +212,13 @@ function Properties() {
             type="text"
             name="ownerPhoneNumber"
             placeholder="Owner Phone Number"
+            onChange={handlePropertyChange}
+            required
+          />
+          <input
+            type="text"
+            name="address"
+            placeholder="Property Address"
             onChange={handlePropertyChange}
             required
           />

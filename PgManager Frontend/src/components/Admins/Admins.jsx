@@ -2,8 +2,8 @@
 
 function Admins() {
   return (
-    <div>
-     <h1>Admin component</h1> 
+    <div className="admin-container">
+    
     </div>
   )
 }

@@ -46,7 +46,7 @@
     margin-bottom: 10px; /* Add margin at the bottom to create spacing between rows */
     position: relative;
     margin-top:20px;
-    width: 100%; /* Full width within its container */
+    width: 50%; /* Full width within its container */
     height: 300px; /* Fixed height */
     background-color:rgb(47 167 161);
     display: flex;
@@ -93,7 +93,7 @@
 }
 
 .property-card p:not(.heading) {
-    font-size: 14px;
+    font-size: 17px;
 }
 
 .property-card:hover::after {

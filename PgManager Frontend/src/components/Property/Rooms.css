@@ -1,52 +1,318 @@
 .rooms-container {
-  padding: 16px;
-}
-
-.floor-select {
-  margin: 16px 0;
-}
-
-.rooms-grid {
-  margin-top: 10%;
-
+  padding: 20px;
+  background-color: transparent; /* Ensure background is transparent */
 }
 
 .room-card {
-  margin-bottom: 16px;
-  margin-top: 10%;
-  background-color: rgb(47 167 161) !important;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;          /* Allows wrapping of cards */
+  justify-content: space;
+  margin-top: 20px; /* Adjusts spacing between items */
 }
 
-.beds {
+.room-card > div {
+  flex: 0 0 30%;           /* Sets each card to take up 30% of the row */
+  max-width: 25%;          /* Ensures the maximum width of each card */
+  box-sizing: border-box;  /* Ensures padding and border are included in width */
+  margin-bottom: 20px;     /* Adds spacing between rows */
+}
+
+
+
+.room-layout {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+}
+
+.single-room, .double-room, .triple-room, .triple-plus-room {
+  display: grid;
+  grid-template-areas:
+    "window window window"
+    "bathroom room-beds room-beds"
+    "entrance entrance entrance";
+  grid-gap: 5px;
+}
+.single-room {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-rows: auto 1fr auto; /* Top for window, middle for bathroom, bottom for beds and entrance */
+  grid-template-areas:
+    "window"      /* Top area for the window */
+    "bathroom"    /* Middle area for the bathroom */
+       /* Bottom area for the entrance */
+    "room-beds"
+    "entrance" ; 
+   
+  grid-gap: 5px;  
+  width: 150px;    
+  height: auto;    
+}
+
+
+.single-room-beds {
+  margin-top: -15px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column; 
+  gap: 5px; 
+}
+.double-room {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-rows: auto 1fr auto; /* Top for window, middle for bathroom, bottom for beds and entrance */
+  grid-template-areas:
+    "window"      /* Top area for the window */
+    "bathroom"    /* Middle area for the bathroom */
+       /* Bottom area for the entrance */
+    "room-beds"
+    "entrance" ; 
+   
+  grid-gap: 5px;  
+  width: 150px;    
+  height: auto;    
+}
+
+
+.double-room-beds {
+  margin-top: -15px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column; 
+  gap: 5px; 
+}
+
+.triple-room {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-rows: auto 1fr auto; /* Top for window, middle for bathroom, bottom for beds and entrance */
+  grid-template-areas:
+    "window"      /* Top area for the window */
+    "bathroom"    /* Middle area for the bathroom */
+       /* Bottom area for the entrance */
+    "room-beds"
+    "entrance" ; 
+   
+  grid-gap: 5px;  
+  width: 150px;    
+  height: auto;    
+}
+
+
+.triple-room-beds {
  
+  display: flex;
+  flex-direction: column; 
+  gap: 5px; 
+}
+
+.triple-plus-room {
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-rows: auto auto 1fr auto; /* Adjust rows for window, bathroom, beds, and entrance */
+  grid-template-areas:
+    "window"       /* Top area for the window */
+    "bathroom"     /* Area for the bathroom */
+    "room-beds"    /* Area for the beds */
+    "entrance";    /* Area for the entrance */
+  grid-gap: 5px;  /* Space between grid items */
+  width: 150px;    /* Width of the room layout */
+  height: auto;    /* Height will adjust based on content */
+}
+
+/* Adjust the tripleplus-room-beds to be a vertical stack */
+.tripleplus-room-beds {
+  display: flex;
+  flex-direction: column; /* Arrange beds vertically */
+  gap: 5px; /* Space between bed icons */
+}
+
+.window {
+  grid-area: window;
+  background-color: #87cefa;
+  height: 20px;
+  width: 100%;
+  text-align: center;
+  border-radius: 4px;
+}
+.single-window{
+  grid-area: window;
+  
+  height: 20px;
+  width: 20%;
+  text-align: center;
+  margin-left: 40%;
+  border-radius: 4px;
+}
+.double-window{
+  grid-area: window;
+
+  height: 20px;
+  width: 20%;
+  text-align: center;
+  margin-left: 40%;
+  border-radius: 4px;
+}
+
+.triple-window{
+  grid-area: window;
+
+  height: 20px;
+  width: 20%;
+  text-align: center;
+  margin-left: 40%;
+  border-radius: 4px;
+}
+.tripleplus-window{
+  grid-area: window;
+
+  height: 20px;
+  width: 20%;
+  text-align: center;
+  margin-left: 40%;
+  border-radius: 4px;
+}
+.room-beds {
+  grid-area: room-beds;
+  display: flex;
   justify-content: center;
+  gap: 5px;
+}
+
+.single-room-beds {
+  grid-area: room-beds;
+  display: flex;
+  justify-content: center;
+  margin-left: 40%;
+  gap: 5px;
   
 }
-.bed-summary {
+.double-room-beds {
+  grid-area: room-beds;
   display: flex;
-  justify-content: center; /* This will space the elements evenly */
-  align-items: center; /* Aligns items vertically centered */
-  padding: 10px; /* Optional: Adds some space around the content */
-  gap: 25px;
+  justify-content: center;
+  margin-left: 40%;
+  gap: 5px;
+  
 }
 
+.triple-room-beds {
+  grid-area: room-beds;
+  display: flex;
+  justify-content: center;
+  margin-right: 20%;
+  gap: 5px;
+  
+}
 
+.tripleplus-room-beds {
+  grid-area: room-beds;
+  display: flex;
+  justify-content: center;
+  margin-right: 20%;
+  gap: 5px;
+  
+}
+.bathroom {
+  grid-area: bathroom;
+ 
+  height: 60px;
+  width: 30%;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.double-bathroom{
+  grid-area: bathroom;
+  
+  height: 60px;
+  width: 35%;
+  text-align: center;
+ 
+  border-radius: 4px;
+}
+
+.triple-bathroom{
+  grid-area: bathroom;
+  background-color: #add8e6;
+  height: 60px;
+  width: 47%;
+  text-align: center;
+ 
+  border-radius: 4px;
+}
+
+.tripleplus-bathroom{
+  grid-area: bathroom;
+  background-color: #add8e6;
+  height: 60px;
+  width: 80%;
+  text-align: center;
+ 
+  border-radius: 4px;
+}
+
+.entrance {
+  grid-area: entrance;
+  background-color: #d3d3d3;
+  height: 20px;
+  width: 20%;
+  margin-left: 80%;
+  text-align: center;
+  border-radius: 4px;
+}
+.single-entrance{
+  grid-area: entrance;
+  background-color: #d3d3d3;
+  height: 20px;
+  width: 20%;
+  margin-left: 40%;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.double-entrance{
+  grid-area: entrance;
+  background-color: #d3d3d3;
+  height: 20px;
+  width: 20%;
+  margin-left: 40%;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.triple-entrance{
+  grid-area: entrance;
+  background-color: #d3d3d3;
+  height: 20px;
+  width: 20%;
+  margin-left: 80%;
+  text-align: center;
+  border-radius: 4px;
+}
 .bed-icon {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
 }
 
-.available {
-  color: green;
+.bed-icon.available {
+  border-color: green;
 }
 
-.unavailable {
-  color: red;
+.bed-icon.unavailable {
+  border-color: red;
+}
+
+.floor-select{
+  width: 20%;
 }

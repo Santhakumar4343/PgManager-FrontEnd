@@ -1,6 +1,25 @@
 /* General page styles */
 
-
+.property-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .property-info input {
+    margin: 10px 0;
+    padding: 8px;
+    width: 80%;
+    max-width: 400px; /* Adjust as needed */
+  }
+  
+  .property-info button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
 h2, h3, h4 {
     color: #333;
 }

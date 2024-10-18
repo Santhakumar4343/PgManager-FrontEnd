@@ -5,22 +5,19 @@ import SummarizeIcon from '@mui/icons-material/Summarize';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import PersonIcon from '@mui/icons-material/Person';
-import { useState } from "react";
+
 const SideNav = () => {
 
-    const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-
-  // Function to toggle the sub-menu
-  const toggleSubMenu = () => {
-    setIsSubMenuOpen(!isSubMenuOpen);
-  };
+ 
   return (
     <nav className="sidenav">
+      <div className="nav-container">
       <img src={Logo} alt="logo image"  width="200px" height="100px" className="logo"/>
-      <h2 style={{color:"white"}}>Admin Dashboard</h2>
+      <h2 style={{color:"black"}}>Owner Dashboard</h2>
       <ul >
-        <li >
-          <SummarizeIcon/>
+        <div className="nav-links">
+        <li>
+          <SummarizeIcon className="icons"/>
           <NavLink
             to="/dashboard"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -29,8 +26,10 @@ const SideNav = () => {
             Summary
           </NavLink>
         </li>
-        <li onClick={toggleSubMenu}>
-            <ApartmentIcon/>
+        </div>
+        <div className="nav-links">
+        <li >
+            <ApartmentIcon className="icons"/>
           <NavLink
           
             to="/dashboard/properties"
@@ -39,19 +38,11 @@ const SideNav = () => {
             Properties
           </NavLink>
          
-        </li>
-        {isSubMenuOpen && (
-        <li style={{marginLeft:"30px"}}>
-          <NavLink
-            to="/dashboard/rooms"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            Rooms
-          </NavLink>
-        </li>
-      )}
+      </li>
+      </div>
+      <div className="nav-links">
         <li>
-            <SupervisorAccountIcon/>
+            <SupervisorAccountIcon className="icons"/>
           <NavLink
             to="/dashboard/admins"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -59,8 +50,10 @@ const SideNav = () => {
             Admins
           </NavLink>
         </li>
+        </div>
+        <div className="nav-links">
         <li>
-            <PersonIcon/>
+            <PersonIcon className="icons"/>
           <NavLink
             to="/dashboard/users"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -68,7 +61,9 @@ const SideNav = () => {
             Users
           </NavLink>
         </li>
+        </div>
       </ul>
+      </div>
     </nav>
   );
 };
