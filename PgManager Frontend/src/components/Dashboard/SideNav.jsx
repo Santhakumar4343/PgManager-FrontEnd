@@ -47,7 +47,7 @@ const SideNav = () => {
             to="/dashboard/admins"
             className={({ isActive }) => (isActive ? "active" : "")}
           >
-            Admins
+            supervisors
           </NavLink>
         </li>
         </div>

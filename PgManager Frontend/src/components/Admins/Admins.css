@@ -1,0 +1,161 @@
+.admin-container{
+    margin-top: 50px;
+}
+
+
+.add-supervisor{
+    display: flex;
+    justify-content: space-between;
+}
+  
+  .add-supervisor button {
+    padding: 10px 20px;
+    background-color: #4f0e83;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-supervisor button:hover {
+    background-color: #155a9b;
+  }
+  
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .modal-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .modal-row .MuiTextField-root {
+    flex: 1;
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .action-button {
+    flex: 1;
+    height: 40px;
+   
+  }
+
+
+
+
+  /* Container for the cards to apply flexbox */
+.admin-cards {
+    display: flex;
+    flex-wrap: wrap; /* Ensures wrapping to the next row after 3 cards */
+    gap:    20px; /* Adjust spacing between cards */
+    justify-content: flex-start; /* Ensures even spacing between cards */
+    
+}
+
+/* Card Styles */
+.admin-card {
+    flex: 1 1 calc(33.333% - 20px); /* Three cards per row, accounting for the gap */
+    max-width: calc(31.333% - 20px); /* Set max-width to maintain proper layout */
+    margin-bottom: 10px; /* Add margin at the bottom to create spacing between rows */
+    position: relative;
+    margin-top:20px;
+    width: 50%; /* Full width within its container */
+    height: 400px; /* Fixed height */
+    background-color:rgb(47 167 161);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 12px;
+    gap: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    overflow: hidden;
+    transition: transform 0.5s ease;
+}
+
+.admin-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -5px;
+    margin: auto;
+    width: 200px;
+    height: 264px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #4f0e83 0%, #6bfffa 100%);
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.admin-card::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #4f0e83 0%, #6bfffa 100%);
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+
+.admin-card .heading {
+    font-size: 20px;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.admin-card p:not(.heading) {
+    font-size: 17px;
+}
+
+.admin-card:hover::after {
+    filter: blur(30px);
+}
+
+.admin-card:hover::before {
+    transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Optional: Add a hover effect for the card */
+.admin-card:hover {
+    transform: scale(1.05);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1024px) {
+    .property-card {
+        flex: 1 1 calc(50% - 20px); /* Two cards per row for smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .property-card {
+        flex: 1 1 calc(100% - 20px); /* One card per row for very small screens */
+    }
+}
