@@ -5,6 +5,7 @@ import "./Admins.css";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import Swal from 'sweetalert2';
+import { API_URL } from "../API/Api";
 
 function Admins() {
   const [addSupervisorModal, setAddSupervisorModal] = useState(false);
@@ -26,14 +27,15 @@ function Admins() {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const response = await fetch("http://localhost:8082/api/admins/getAll");
+      const response = await fetch(`${API_URL}/api/admins/getAll`);
       const data = await response.json();
       setAdmins(data);
     };
     fetchProperties();
   }, []);
-
+  const user = JSON.parse(localStorage.getItem("user")) || {};
   const handleAddSupervisor = () => {
+   
     setEditMode(false);
     setFormData({
       username: "",
@@ -45,6 +47,8 @@ function Admins() {
       presentAddress: "",
       permanentAddress: "",
       aadharcard: null,
+      ownerEmail:user.email
+      
     });
     setAddSupervisorModal(true);
   };
@@ -90,17 +94,20 @@ function Admins() {
     form.append("presentAddress", formData.presentAddress);
     form.append("permanentAddress", formData.permanentAddress);
     form.append("file", formData.aadharcard);
+    form.append("ownerEmail", formData.ownerEmail);
+
+   
 
     try {
       if (editMode) {
-        await axios.put(`http://localhost:8082/api/admins/update/${selectedSupervisorId}`, form, {
+        await axios.put(`${API_URL}/api/admins/update/${selectedSupervisorId}`, form, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
         alert("Supervisor updated successfully!");
       } else {
-        await axios.post("http://localhost:8082/api/admins/save", form, {
+        await axios.post(`${API_URL}/api/admins/save`, form, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -131,7 +138,7 @@ function Admins() {
   
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:8082/api/admins/delete/${id}`);
+        await axios.delete(`${API_URL}/api/admins/delete/${id}`);
         Swal.fire(
           'Deleted!',
           'Supervisor has been deleted.',
@@ -197,7 +204,7 @@ function Admins() {
      
       >
         <div className="modal-content">
-        <h2 style={{textAlign:"center"}}>{editMode ? "Edit Supervisor" : "Add a Supervisor"}</h2>
+        <h2 style={{textAlign:"center"}}>{editMode ? "Update Supervisor" : "Add a Supervisor"}</h2>
           <form className="modal-form">
             <div className="modal-row">
               <TextField
@@ -277,7 +284,7 @@ function Admins() {
             </div>
             <input
               type="file"
-              accept="image/*"
+              accept="*"
               
               onChange={handleFileChange}
               style={{ margin: "10px 0" }}

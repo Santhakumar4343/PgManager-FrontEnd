@@ -1,15 +1,15 @@
-import AddFloors from "./AddFloors";
+import AddFloors from "../Property/AddFloors.jsx";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { API_URL, createFloor, createRoom } from "../API/Api";
-import AddRooms from "./AddRooms";
+import AddRooms from "../Property/AddRooms.jsx";
 
 import "../../components/Property/PropertyDetails.css";
 import axios from "axios";
 import { Modal } from "@mui/material";
 
-function PropertyDetails() {
+function SupervisorPropertyDetails() {
   const location = useLocation();
   const { updatedProperty: initialProperty } = location.state || {};
 
@@ -134,7 +134,7 @@ function PropertyDetails() {
   };
 
   const handleRoomClick = (property) => {
-    navigate(`/dashboard/rooms/${property.id}`, {
+    navigate(`/admindashboard/rooms/${property.id}`, {
       state: { updatedProperty: property },
     });
     console.log("the property id is ", property.id);
@@ -225,12 +225,7 @@ function PropertyDetails() {
               onChange={handlePropertyChange}
               placeholder="Pincode"
             />
-            <button
-              onClick={updatePropertyDetails}
-              style={{ borderRadius: "20px" }}
-            >
-              Update Property
-            </button>
+          
           </div>
 
           <button
@@ -252,41 +247,13 @@ function PropertyDetails() {
           >
             Rooms Details
           </button>
-          <button
-            style={{ margin: "20px", borderRadius: "20px" }}
-            onClick={handlePropertyAssing}
-          >
-            Assign Property{" "}
-          </button>
+          
         </div>
       )}
 
-      <Modal
-        open={assignModal}
-        onClose={hadleAssigneClose}
-        className="assign-modal"
-      >
-        <div className="modal-content">
-          <h3>Assign Property</h3>
-          <select
-            value={selectedAdmin}
-            onChange={(e) => setSelectedAdmin(e.target.value)}
-          >
-            <option value="">Select an Admin</option>
-            
-            {admins.map((admin) => (
-              <option key={admin.id} value={admin.id}>
-                {admin.username}
-              </option>
-            ))}
-          </select>
-          <button onClick={assignAdmin} style={{ marginTop: "20px" }}>
-            Assign Admin
-          </button>
-        </div>
-      </Modal>
+     
     </div>
   );
 }
 
-export default PropertyDetails;
+export default SupervisorPropertyDetails;

@@ -316,3 +316,19 @@
 .floor-select{
   width: 20%;
 }
+
+
+.modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-container{
+ 
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 420px;
+  height: 200px;
+  background-color: white;
+}

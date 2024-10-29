@@ -2,8 +2,9 @@ import { useState } from 'react';
 import "../../components/superAdmin/superAdminRegistration.css";
 import HomeIcon from '@mui/icons-material/Home';
 import { API_URL } from '../API/Api';
+import { useNavigate } from 'react-router-dom';
 
-const SuperAdminRegistration = () => {
+const UserRegistration = () => {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -15,7 +16,7 @@ const SuperAdminRegistration = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [otp, setOtp] = useState('');
   const [otpError, setOtpError] = useState('');
-
+ const navigate=useNavigate();
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -57,7 +58,7 @@ const SuperAdminRegistration = () => {
     if (Object.keys(validationErrors).length === 0) {
       // Send registration request
       try {
-        const response = await fetch(`${API_URL}/api/superadmin/register`, {
+        const response = await fetch(`${API_URL}/api/users/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -90,7 +91,7 @@ const SuperAdminRegistration = () => {
     // Validate OTP here
     if (otp.length === 6) { // Assuming OTP is 6 digits
       try {
-        const response = await fetch(`${API_URL}/api/superadmin/validate-otp`, {
+        const response = await fetch(`${API_URL}/api/users/validate-otp`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -107,7 +108,9 @@ const SuperAdminRegistration = () => {
             email: '',
             mobileNumber: '',
           })
+          navigate("/userlogin")
           setIsOtpSent(false);
+          
         } else {
           setOtpError(data); // Display backend error message
         }
@@ -185,7 +188,7 @@ const SuperAdminRegistration = () => {
           </form>
           <div className="register">
             <p>Already have an account?</p>
-            <a href="/login" className="create-account">Login</a>
+            <a href="/userlogin" className="create-account">Login</a>
           </div>
         </div>
       ) : (
@@ -210,4 +213,4 @@ const SuperAdminRegistration = () => {
   );
 };
 
-export default SuperAdminRegistration;
+export default UserRegistration;

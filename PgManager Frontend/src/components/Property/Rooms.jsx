@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 import WindowIcon from '@mui/icons-material/Window';
 import DoorSlidingIcon from '@mui/icons-material/DoorSliding';
 import BathtubIcon from '@mui/icons-material/Bathtub';
+import { API_URL } from "../API/Api";
 function Rooms() {
   const location = useLocation();
   const { updatedProperty: initialProperty } = location.state || {};
@@ -26,7 +27,7 @@ function Rooms() {
     const fetchPropertyData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8082/api/properties/get/${initialProperty.id}`
+          `${API_URL}/api/properties/get/${initialProperty.id}`
         );
         const data = response.data;
         setPropertyData(data);
@@ -102,7 +103,7 @@ function Rooms() {
                   className={`bed-icon ${room.beds[0].available ? "available" : "unavailable"}`}
                 >
                   <HotelIcon 
-                    style={{ color: room.beds[0].available ? "green" : "red" }} 
+                    style={{ color: room.beds[0].available ? "green" : "red" ,marginRight:"10px" }} 
                     onClick={() => { alert("Assign bed "); }} 
                   />
                   <Typography variant="body2">{room.beds[0].bedNumber}</Typography>
@@ -117,7 +118,7 @@ function Rooms() {
                   className={`bed-icon ${room.beds[1].available ? "available" : "unavailable"}`}
                 >
                   <HotelIcon 
-                    style={{ color: room.beds[1].available ? "green" : "red" }} 
+                    style={{ color: room.beds[1].available ? "green" : "red",marginRight:"10px"  }} 
                     onClick={() => { alert("Assign bed "); }} 
                   />
                   <Typography variant="body2">{room.beds[1].bedNumber}</Typography>
@@ -143,7 +144,7 @@ function Rooms() {
           key={room.beds[0].id}
           className={`bed-icon ${room.beds[0].available ? "available" : "unavailable"}`}
         >
-          <HotelIcon style={{ color: room.beds[0].available ? "green" : "red" }} />
+          <HotelIcon style={{ color: room.beds[0].available ? "green" : "red",marginRight:"10px"  }} />
           <Typography variant="body2">{room.beds[0].bedNumber}</Typography>
         </div>
       )}
@@ -155,7 +156,7 @@ function Rooms() {
           key={room.beds[1].id}
           className={`bed-icon ${room.beds[1].available ? "available" : "unavailable"}`}
         >
-          <HotelIcon style={{ color: room.beds[1].available ? "green" : "red" }} />
+          <HotelIcon style={{ color: room.beds[1].available ? "green" : "red",marginRight:"10px" }} />
           <Typography variant="body2">{room.beds[1].bedNumber}</Typography>
         </div>
       )}
@@ -180,7 +181,7 @@ function Rooms() {
                   className={`bed-icon ${room.beds[0].available ? "available" : "unavailable"}`}
                 >
                   <HotelIcon 
-                    style={{ color: room.beds[0].available ? "green" : "red" }} 
+                    style={{ color: room.beds[0].available ? "green" : "red" ,marginRight:"10px" }} 
                   />
                   <Typography variant="body2">{room.beds[0].bedNumber}</Typography>
                 </div>
@@ -194,7 +195,7 @@ function Rooms() {
                   className={`bed-icon ${room.beds[1].available ? "available" : "unavailable"}`}
                 >
                   <HotelIcon 
-                    style={{ color: room.beds[1].available ? "green" : "red" }} 
+                    style={{ color: room.beds[1].available ? "green" : "red" ,marginRight:"10px" }} 
                   />
                   <Typography variant="body2">{room.beds[1].bedNumber}</Typography>
                 </div>
@@ -208,7 +209,7 @@ function Rooms() {
                   className={`bed-icon ${room.beds[2].available ? "available" : "unavailable"}`}
                 >
                   <HotelIcon 
-                    style={{ color: room.beds[2].available ? "green" : "red" }} 
+                    style={{ color: room.beds[2].available ? "green" : "red",marginRight:"10px"  }} 
                   />
                   <Typography variant="body2">{room.beds[2].bedNumber}</Typography>
                 </div>
@@ -232,7 +233,7 @@ function Rooms() {
                   key={bed.id}
                   className={`bed-icon ${bed.available ? "available" : "unavailable"}`}
                 >
-                  <HotelIcon style={{ color: bed.available ? "green" : "red" }} />
+                  <HotelIcon style={{ color: bed.available ? "green" : "red" ,marginRight:"10px" }} />
                   <Typography variant="body2">{bed.bedNumber}</Typography>
                 </div>
               ))}

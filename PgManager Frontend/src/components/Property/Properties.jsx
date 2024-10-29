@@ -4,6 +4,7 @@ import {
   createProperty,
   createFloor,
   createRoom,
+  API_URL,
 } from "../../components/API/Api.jsx";
 import AddFloors from "./AddFloors";
 import AddRooms from "./AddRooms";
@@ -22,8 +23,8 @@ function Properties() {
     pincode: "",
     ownerName: "",
     ownerPhoneNumber: "",
-    propertyType:"",
-    address:""
+    propertyType: "",
+    address: "",
   });
   const [floors, setFloors] = useState([]);
   const [newlyAddedFloors, setNewlyAddedFloors] = useState([]);
@@ -46,17 +47,21 @@ function Properties() {
 
   useEffect(() => {
     const fetchProperties = async () => {
-      const response = await fetch("http://localhost:8082/api/properties/getAll");
+      const response = await fetch(
+        `${API_URL}/api/properties/getProperty/${user.email}`
+      );
       const data = await response.json();
       setProperties(data);
     };
     fetchProperties();
-  }, []);
+  }, [user.email]);
 
   const handlePropertyClick = (property) => {
     setSelectedProperty(property);
-    navigate(`/dashboard/${property.id}`, { state: { updatedProperty: property } });
-  };                        
+    navigate(`/dashboard/${property.id}`, {
+      state: { updatedProperty: property },
+    });
+  };
 
   const handlePropertyChange = (e) => {
     const { name, value } = e.target;
@@ -72,41 +77,40 @@ function Properties() {
     // Trigger the floor addition right after saving the property
     handleFloorsSubmit(1); // For example, automatically add 1 floor, or prompt for more
   };
-  
+
   // Change the way you're triggering the floor addition
   const handleFloorsSubmit = async (numberOfFloors) => {
     if (!propertyId) {
       console.error("Property ID is not set.");
       return;
     }
-  
+
     const existingFloors = updatedProperty?.floors || [];
     const lastFloorIndex = existingFloors.length;
     const newFloors = [];
-  
+
     for (let i = 0; i < numberOfFloors; i++) {
       const floorIndex = lastFloorIndex + i;
       newFloors.push({
         floorName: floorIndex === 0 ? "Ground Floor" : `${floorIndex} Floor`,
       });
     }
-  
+
     const savedFloors = [];
     for (const floor of newFloors) {
       try {
-        const savedFloor = await createFloor(propertyId, floor); 
+        const savedFloor = await createFloor(propertyId, floor);
         savedFloors.push(savedFloor);
       } catch (error) {
         console.error(`Failed to save floor: ${floor.floorName}`, error);
       }
     }
-  
+
     setFloors([...existingFloors, ...savedFloors]);
     setIsRoomsVisible(true);
     setNewlyAddedFloors(savedFloors);
     setIsFloorsAdded(false);
   };
-  
 
   const handleRoomsSubmit = async (rooms) => {
     for (const room of rooms) {
@@ -117,6 +121,7 @@ function Properties() {
         triplePlus: room.triplePlus,
       };
       await createRoom(room.floorId, roomData);
+      location.reload()
       console.log("Room saved:", roomData);
     }
     setIsRoomsVisible(false);
@@ -139,7 +144,7 @@ function Properties() {
         </button>
 
         <input
-         className="search-Property"
+          className="search-Property"
           placeholder="Search by property name or owner name …"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -147,21 +152,26 @@ function Properties() {
       </div>
 
       <div className="property-cards">
-        {filteredProperties.map((property) => (
-          <div
-            key={property.id}
-            className="property-card"
-            onClick={() => handlePropertyClick(property)}
-          >
-            <h2>{property.name}</h2>
-            <p>Owner: {property.ownerName}</p>
-            <p>PG Type: {property.propertyType}</p>
-            <p>Pincode: {property.pincode}</p>
-            <p>Address: {property.address}</p>
-           
-          </div>
-        ))}
+  {filteredProperties.map((property) => (
+    <div
+      key={property.id}
+      className="property-card"
+      onClick={() => handlePropertyClick(property)}
+    >
+      <h2>{property.name}</h2>
+      <div style={{display:"flex",textAlign:"center"}}> 
+      <p className="property-key">Owner:</p> <p className="property-value">{property.ownerName}</p>
       </div>
+      <div style={{display:"flex"}}> 
+      <p className="property-key">PG Type:</p> <p className="property-value">{property.propertyType}</p></div>
+      <div style={{display:"flex"}}> 
+      <p className="property-key">Pincode:</p> <p className="property-value">{property.pincode}</p></div>
+      <div style={{display:"flex"}}> 
+      <p className="property-key">Address:</p> <p className="property-value">{property.address}</p></div>
+    </div>
+  ))}
+</div>
+
 
       <Modal
         isOpen={isAddPropertyModalOpen}
@@ -178,21 +188,20 @@ function Properties() {
             onChange={handlePropertyChange}
             required
           />
-<input
-  type="text"
-  name="propertyType"
-  placeholder="Property Type"
-  list="propertyTypeOptions"   // Link to the datalist
-  onChange={handlePropertyChange}
-  required
-/>
+          <input
+            type="text"
+            name="propertyType"
+            placeholder="Property Type"
+            list="propertyTypeOptions" // Link to the datalist
+            onChange={handlePropertyChange}
+            required
+          />
 
-<datalist id="propertyTypeOptions">
-  <option value="Male" />
-  <option value="Female" />
-  <option value="Co-Living" />
-  
-</datalist>
+          <datalist id="propertyTypeOptions">
+            <option value="Mens" />
+            <option value="Womens" />
+            <option value="Co-Living" />
+          </datalist>
 
           <input
             type="text"

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import "../../components/superAdmin/superAdminLogin.css";
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../API/Api';
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -39,38 +40,34 @@ const AdminLogin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationError = validateForm();
-
+  
     if (validationError) {
       setErrorMessage(validationError);
       return;
     }
-
+  
     // Call the login endpoint
-    const response = await fetch('http://localhost:8082/api/admins/login', {
+    const response = await fetch(`${API_URL}/api/admins/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(formData),
     });
-
+  
     const data = await response.json();
     if (response.ok) {
-      const user = {
-        email: formData.email,
-       
-      };
-
-      // Store user details in localStorage
-      localStorage.setItem('user', JSON.stringify(user));
-
-      navigate('/dashboard');
+      // Store the entire admin object in localStorage
+      localStorage.setItem('admin', JSON.stringify(data));
+  
+      navigate('/admindashboard');
       console.log('Login successful:', data);
       // Redirect or perform actions on successful login
     } else {
-      setErrorMessage(data); // Display backend error message
+      setErrorMessage(data.message); // Display backend error message if available
     }
   };
+  
 
   return (
     <div className="register-container">

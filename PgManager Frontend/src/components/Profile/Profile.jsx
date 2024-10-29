@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import './Profile.css';
 import Swal from 'sweetalert2'; 
 import { useNavigate } from 'react-router-dom';
-const Profile = () => {
+import { API_URL } from '../API/Api';
+export const Profile = () => {
     const [formData, setFormData] = useState({
         email: '',
         mobileNumber: '',
@@ -18,7 +19,7 @@ const Profile = () => {
         try {
             const storedUser = JSON.parse(localStorage.getItem('user'));
             if (storedUser && storedUser.email) {
-                const response = await fetch(`http://localhost:8082/api/superadmin/get/${storedUser.email}`);
+                const response = await fetch(`${API_URL}/api/superadmin/get/${storedUser.email}`);
                 if (response.ok) {
                     const data = await response.json();
                     setFormData({
@@ -83,7 +84,7 @@ const Profile = () => {
         if (Object.keys(validationErrors).length === 0) {
             try {
                 // Send PUT request to update profile
-                const response = await fetch(`http://localhost:8082/api/superadmin/update/${storedUser.email}`, {
+                const response = await fetch(`${API_URL}/api/superadmin/update/${storedUser.email}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

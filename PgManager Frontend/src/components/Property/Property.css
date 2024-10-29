@@ -240,3 +240,17 @@
     color: #333;
     margin-bottom: 15px;
 }
+
+
+.property-key {
+    color: white;
+    display: inline;
+    margin-left: 50px;
+  }
+  
+  .property-value {
+    color: black;
+    display: inline;
+    margin-left: 10px;
+  }
+  

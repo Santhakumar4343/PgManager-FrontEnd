@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import "../../components/Property/AddRooms.css";
 import axios from 'axios'; // Import axios for making HTTP requests
+import { API_URL } from '../API/Api';
 
 function AddRooms({ floors, onSubmit }) {
     const [rooms, setRooms] = useState(
@@ -62,7 +63,7 @@ function AddRooms({ floors, onSubmit }) {
 
                         try {
                             // Make the API request to create rooms
-                            const response = await axios.post(`http://localhost:8082/api/rooms/save/${floorId}`, [ // Sending an array
+                            const response = await axios.post(`${API_URL}/api/rooms/save/${floorId}`, [ // Sending an array
                                 { sharingType, bedCount }
                             ]);
                             if (response.status === 201) {
@@ -80,6 +81,7 @@ function AddRooms({ floors, onSubmit }) {
             }
 
             alert('Rooms added successfully!');
+            location.reload()
             onSubmit(validRooms); // Optionally, call onSubmit to refresh or update the parent state
         } catch (error) {
             console.error('Error adding rooms:', error);

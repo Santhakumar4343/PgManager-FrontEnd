@@ -3,7 +3,7 @@ import "../../components/superAdmin/superAdminLogin.css";
 import HomeIcon from '@mui/icons-material/Home';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../API/Api';
-const SuperAdminLogin = () => {
+const UserLogin = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -47,7 +47,7 @@ const SuperAdminLogin = () => {
     }
 
     // Call the login endpoint
-    const response = await fetch(`${API_URL}/api/superadmin/login`, {
+    const response = await fetch(`${API_URL}/api/users/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -109,10 +109,10 @@ const SuperAdminLogin = () => {
       </div>
       <div className="login">
         <p>New Here?</p>
-        <a href="/registration" className="create-account">Register</a>
+        <a href="/userRegistration" className="create-account">Register</a>
       </div>
     </div>
   );
 };
 
-export default SuperAdminLogin;
+export default UserLogin;
